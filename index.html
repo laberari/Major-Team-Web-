@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Major Team — Hospitalidad Plateada</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --mint: #4ECDC4;
+            --mint-light: #E8F8F6;
+            --dark-green: #1A535C;
+            --dark: #2D3436;
+            --gray: #636E72;
+            --light-gray: #F7F7F7;
+            --white: #FFFFFF;
+            --warm: #FFF8F0;
+            --accent: #FF6B6B;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, var(--mint), #2ECC71);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .logo-icon svg { width: 24px; height: 24px; }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--dark-green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--dark-green); }
+
+        .nav-cta {
+            background: var(--dark-green);
+            color: var(--white) !important;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover { background: var(--mint); color: var(--dark-green) !important; }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--mint-light) 0%, var(--white) 50%, var(--warm) 100%);
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -10%; right: -10%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(78,205,196,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -5%; left: -5%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(255,107,107,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--white);
+            border: 1px solid var(--mint);
+            color: var(--dark-green);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badge .dot {
+            width: 8px; height: 8px;
+            background: var(--mint);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--dark-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--mint), var(--dark-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--dark-green);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: var(--mint);
+            color: var(--dark-green);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(78,205,196,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--dark-green);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 2px solid var(--dark-green);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--dark-green);
+            color: var(--white);
+        }
+
+        .hero-images {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .hero-img {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .hero-img:hover { transform: translateY(-5px); }
+
+        .hero-img img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-img:nth-child(2) { margin-top: 2rem; }
+        .hero-img:nth-child(3) { margin-top: -1rem; }
+        .hero-img:nth-child(4) { margin-top: 1rem; }
+
+        /* ===== STATS BAR ===== */
+        .stats-bar {
+            background: var(--dark-green);
+            padding: 3rem 0;
+            position: relative;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--mint);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+
+        /* ===== SECTIONS GENERAL ===== */
+        .section {
+            padding: 6rem 0;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            background: var(--mint-light);
+            color: var(--dark-green);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--dark-green);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        /* ===== PROBLEM SECTION ===== */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .problem-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--mint), var(--dark-green));
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .problem-icon {
+            width: 60px; height: 60px;
+            background: var(--mint-light);
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .problem-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark-green);
+            margin-bottom: 0.75rem;
+        }
+
+        .problem-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .problem-stat {
+            display: inline-block;
+            background: var(--warm);
+            color: var(--accent);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-top: 1rem;
+        }
+
+        /* ===== SOLUTION SECTION ===== */
+        .solution-section {
+            background: linear-gradient(180deg, var(--light-gray) 0%, var(--white) 100%);
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .solution-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .solution-number {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--mint), var(--dark-green));
+            color: var(--white);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .solution-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark-green);
+            margin-bottom: 0.75rem;
+        }
+
+        .solution-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ===== DATA SECTION ===== */
+        .data-section {
+            background: var(--dark-green);
+            color: var(--white);
+        }
+
+        .data-section .section-header h2,
+        .data-section .section-header p {
+            color: var(--white);
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .data-card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .data-card:hover {
+            background: rgba(255,255,255,0.12);
+            transform: translateX(5px);
+        }
+
+        .data-card-label {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 60%;
+        }
+
+        .data-card-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--mint);
+        }
+
+        .data-card-source {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 0.25rem;
+        }
+
+        /* ===== MOTIVATION SECTION ===== */
+        .motivation-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .motivation-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .motivation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .motivation-icon {
+            width: 70px; height: 70px;
+            background: var(--mint-light);
+            border-radius: 20px;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .motivation-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark-green);
+            margin-bottom: 0.75rem;
+        }
+
+        .motivation-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            background: linear-gradient(135deg, var(--mint-light) 0%, var(--warm) 100%);
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--dark-green);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--dark-green);
+            color: var(--white);
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover { color: var(--mint); }
+
+        .footer-copy {
+            width: 100%;
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .hero-container { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero-images { order: -1; }
+            .problem-grid, .solution-grid, .motivation-grid { grid-template-columns: 1fr; }
+            .data-grid { grid-template-columns: 1fr; }
+            .stats-container { grid-template-columns: repeat(2, 1fr); }
+            .nav-links { display: none; }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2rem; }
+            .section-header h2 { font-size: 1.8rem; }
+            .stats-container { grid-template-columns: 1fr; }
+            .footer-container { flex-direction: column; text-align: center; }
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                </div>
+                <span class="logo-text">Major Team</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#problema">El Problema</a></li>
+                <li><a href="#solucion">Nuestra Solución</a></li>
+                <li><a href="#datos">Datos</a></li>
+                <li><a href="#motivacion">Motivación</a></li>
+                <li><a href="#encuesta" class="nav-cta">Participa en la Encuesta</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="dot"></span>
+                    Plataforma de conexión y empleabilidad
+                </div>
+                <h1>Hospitalidad <span>Plateada</span></h1>
+                <p>Visibilizamos la trayectoria, conocimiento y confianza de personas mayores con oficios validados. Conectamos talento senior con un mercado que valora la experiencia.</p>
+                <div class="hero-buttons">
+                    <a href="#encuesta" class="btn-primary">
+                        Participa en la Encuesta
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="#solucion" class="btn-secondary">Conoce más</a>
+                </div>
+            </div>
+            <div class="hero-images">
+                <div class="hero-img">
+                    <img src="images/panadera.jpg" alt="Panadera senior mostrando su trabajo">
+                </div>
+                <div class="hero-img">
+                    <img src="images/carpintero.jpg" alt="Artesano carpintero senior">
+                </div>
+                <div class="hero-img">
+                    <img src="images/conserje.jpg" alt="Profesional mayor con experiencia">
+                </div>
+                <div class="hero-img">
+                    <img src="images/modista.jpg" alt="Modista senior trabajando">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <section class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <h3>3.6M</h3>
+                <p>Personas mayores en Chile</p>
+            </div>
+            <div class="stat-item">
+                <h3>33.3%</h3>
+                <p>Necesitan generar ingresos adicionales</p>
+            </div>
+            <div class="stat-item">
+                <h3>62%</h3>
+                <p>Sufren discriminación laboral</p>
+            </div>
+            <div class="stat-item">
+                <h3>86%</h3>
+                <p>Son autovalentes y activas</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEM SECTION -->
+    <section class="section" id="problema">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-label">El Problema</span>
+                <h2>¿Cuál es el dolor y a quiénes les afecta?</h2>
+                <p>Nuestros mayores enfrentan desafíos únicos en un mercado que no valora su experiencia.</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card fade-up">
+                    <div class="problem-icon">👴</div>
+                    <h3>Personas Mayores</h3>
+                    <p>1 de cada 3 no le alcanza su pensión. El 40% sufre depresión por falta de propósito. Necesitan reconexión con la sociedad.</p>
+                    <span class="problem-stat">40% Depresión (U. Católica)</span>
+                </div>
+                <div class="problem-card fade-up">
+                    <div class="problem-icon">🏢</div>
+                    <h3>Empresas</h3>
+                    <p>Pierden oportunidad de innovación al no valorar la intergeneracionalidad. El talento senior aporta confianza y estabilidad.</p>
+                    <span class="problem-stat">73% Mala experiencia (Bain)</span>
+                </div>
+                <div class="problem-card fade-up">
+                    <div class="problem-icon">🛒</div>
+                    <h3>Mercado Desconfiado</h3>
+                    <p>Los consumidores buscan confianza y trayectoria. Una mala experiencia aleja al 73% de volver a comprar.</p>
+                    <span class="problem-stat">73% No vuelve a comprar</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MOTIVATION SECTION -->
+    <section class="section" id="motivacion">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-label">Nuestra Motivación</span>
+                <h2>Por qué lo hacemos</h2>
+                <p>Creemos en el potencial único de cada persona mayor y su capacidad de seguir aportando valor.</p>
+            </div>
+            <div class="motivation-grid">
+                <div class="motivation-card fade-up">
+                    <div class="motivation-icon">💚</div>
+                    <h3>Impacto Social</h3>
+                    <p>Visibilizamos que el 86% de las personas mayores son autovalentes. Promovemos su inclusión activa en la sociedad y el mercado laboral.</p>
+                </div>
+                <div class="motivation-card fade-up">
+                    <div class="motivation-icon">💰</div>
+                    <h3>Mejora Económica</h3>
+                    <p>Ponemos en valor oficios y habilidades validadas para el autoempleo y para empresas que reconocen el aporte de la experiencia senior.</p>
+                </div>
+                <div class="motivation-card fade-up">
+                    <div class="motivation-icon">⭐</div>
+                    <h3>Valor Personal</h3>
+                    <p>Promovemos a la persona mayor como marca personal, reconociendo su potencial único y su legado de sabiduría acumulada.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTION SECTION -->
+    <section class="section solution-section" id="solucion">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-label">Nuestra Propuesta</span>
+                <h2>Soluciones Innovadoras</h2>
+                <p>Una plataforma integral que conecta, capacita y visibiliza el talento senior.</p>
+            </div>
+            <div class="solution-grid">
+                <div class="solution-card fade-up">
+                    <div class="solution-number">1</div>
+                    <h3>Marketplace de Oficios</h3>
+                    <p>Personas mayores especialistas en distintos oficios y profesiones previamente validadas ofertan sus productos y servicios con respaldo de calidad.</p>
+                </div>
+                <div class="solution-card fade-up">
+                    <div class="solution-number">2</div>
+                    <h3>Matching Inteligente</h3>
+                    <p>Conectamos oferta de productos y servicios con demanda de consumidores que valoran la experiencia y confianza de un especialista mayor.</p>
+                </div>
+                <div class="solution-card fade-up">
+                    <div class="solution-number">3</div>
+                    <h3>Capacitación Continua</h3>
+                    <p>Talleres de upskilling y reskilling para fortalecer habilidades: coaching, digitalización y herramientas modernas para el mercado actual.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DATA SECTION -->
+    <section class="section data-section" id="datos">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-label" style="background:rgba(255,255,255,0.15);color:white;">Cifras que nos Impulsan</span>
+                <h2>Datos que respaldan nuestra misión</h2>
+                <p>La realidad de las personas mayores en Chile y América Latina exige acción.</p>
+            </div>
+            <div class="data-grid">
+                <div class="data-card fade-up">
+                    <div>
+                        <div class="data-card-label">Personas mayores en Chile</div>
+                        <div class="data-card-source">INE 2023</div>
+                    </div>
+                    <div class="data-card-value">3.6M</div>
+                </div>
+                <div class="data-card fade-up">
+                    <div>
+                        <div class="data-card-label">Necesitan generar ingresos (pensión insuficiente)</div>
+                        <div class="data-card-source">SENAMA</div>
+                    </div>
+                    <div class="data-card-value">33.3%</div>
+                </div>
+                <div class="data-card fade-up">
+                    <div>
+                        <div class="data-card-label">Trabajan en América Latina y el Caribe (60+ años)</div>
+                        <div class="data-card-source">ONU</div>
+                    </div>
+                    <div class="data-card-value">35.4%</div>
+                </div>
+                <div class="data-card fade-up">
+                    <div>
+                        <div class="data-card-label">Informalidad laboral en mujeres mayores</div>
+                        <div class="data-card-source">CASEN</div>
+                    </div>
+                    <div class="data-card-value">58.7%</div>
+                </div>
+                <div class="data-card fade-up">
+                    <div>
+                        <div class="data-card-label">Discriminación laboral por edad</div>
+                        <div class="data-card-source">LABORUM</div>
+                    </div>
+                    <div class="data-card-value">62%</div>
+                </div>
+                <div class="data-card fade-up">
+                    <div>
+                        <div class="data-card-label">Personas mayores autovalentes en Chile</div>
+                        <div class="data-card-source">CASEN 2017</div>
+                    </div>
+                    <div class="data-card-value">86%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section" id="encuesta">
+        <div class="section-container">
+            <h2 class="fade-up">¿Quieres ser parte del cambio?</h2>
+            <p class="fade-up">Tu opinión es fundamental para construir una plataforma que realmente responda a las necesidades de las personas mayores y del mercado.</p>
+            <a href="#" class="btn-primary fade-up" style="font-size:1.1rem;padding:1.2rem 2.5rem;">
+                Responder Encuesta
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <div class="logo-icon" style="width:32px;height:32px;">
+                    <svg viewBox="0 0 24 24" fill="white" style="width:18px;height:18px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                </div>
+                Major Team
+            </div>
+            <div class="footer-links">
+                <a href="#problema">El Problema</a>
+                <a href="#solucion">Solución</a>
+                <a href="#datos">Datos</a>
+                <a href="#encuesta">Encuesta</a>
+            </div>
+            <div class="footer-copy">
+                © 2026 Major Team — Hospitalidad Plateada. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
